@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>K-Pop World</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=RocknRoll+One&display=swap" rel="stylesheet">
 
     <style>
@@ -15,7 +16,11 @@
             --scroll: 0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -39,7 +44,10 @@
             z-index: 100;
         }
 
-        .logo { font-family: 'RocknRoll One', sans-serif; color: var(--accent); }
+        .logo {
+            font-family: 'RocknRoll One', sans-serif;
+            color: var(--accent);
+        }
 
         nav a {
             color: var(--text);
@@ -50,7 +58,9 @@
             transition: 0.3s;
         }
 
-        nav a:hover { color: var(--accent2); }
+        nav a:hover {
+            color: var(--accent2);
+        }
 
         /* HERO SECTION */
         .hero {
@@ -70,72 +80,76 @@
             position: absolute;
             width: 110%;
             height: 110%;
-            background: url('https://picsum.photos/1200/800?blur=5') center/cover no-repeat;
-            /* The parallax magic */
+            background:
+                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+
             transform: translateY(calc(var(--scroll) * 0.3px));
             z-index: -2;
-            opacity: 0.3;
+            opacity: 0.7;
         }
 
         .hero h1 {
             font-family: 'RocknRoll One', sans-serif;
-            font-size: clamp(2rem, 8vw, 4rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             color: var(--accent);
             text-shadow: 0 0 20px rgba(255, 138, 214, 0.3);
+            margin-bottom: 20px;
         }
 
-        .btn {
-            margin-top: 30px;
-            padding: 12px 28px;
-            border: 1.5px solid var(--accent);
-            color: var(--accent);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-        }
-
-        .btn:hover {
-            background: var(--accent);
-            color: #000;
-            box-shadow: 0 0 15px var(--accent);
+        .hero p {
+            max-width: 700px;
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
         /* CONTENT SECTIONS */
         .section {
-            padding: 100px 10% ;
+            padding: 100px 10%;
             max-width: 1100px;
             margin: auto;
         }
 
         h2 {
             font-family: 'RocknRoll One', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 30px;
             color: var(--accent2);
         }
 
-        /* DYNAMIC GALLERY */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+        /* GROUP CARDS */
+        .group-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            transition: 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .gallery-item {
+        .group-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .group-card img {
             width: 100%;
-            aspect-ratio: 1;
+            height: 350px;
             object-fit: cover;
-            border-radius: 15px;
-            transition: 0.5s ease;
-            filter: grayscale(80%) brightness(0.8);
-            cursor: pointer;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            filter: grayscale(0%) brightness(1);
-            box-shadow: 0 10px 30px rgba(138, 255, 193, 0.2);
+        .group-content {
+            padding: 30px;
+        }
+
+        .group-content h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .group-content p {
+            opacity: 0.9;
         }
 
         footer {
@@ -145,74 +159,109 @@
             letter-spacing: 2px;
             opacity: 0.5;
         }
+
+        @media(max-width:700px) {
+            .group-card img {
+                height: 220px;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            nav a {
+                margin-left: 12px;
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 
 <body>
 
 <nav>
-    <div class="logo">★ MYSPACE</div>
+    <div class="logo">★ K-POP WORLD</div>
+
     <div class="nav-links">
         <a href="#about">ABOUT</a>
-        <a href="#gallery">GALLERY</a>
+        <a href="#groups">GROUPS</a>
     </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-    <h1 id="hero-title"></h1>
-    <p id="hero-desc">
-    <a href="#gallery" class="btn">SEE MY WORK</a>
-</section>
+    <h1>STRAY KIDS & NEWJEANS ✦</h1>
 
-<section id="about" class="section">
-    <h2>ABOUT</h2>
-    <p id="about-text">
-        
+    <p>
+        Discover two of the most popular K-pop groups in the world,
+        known for their amazing music, unique styles, and powerful performances.
     </p>
 </section>
 
-<section id="gallery" class="section">
-    <h2>GALLERY</h2>
-    <div class="gallery" id="gallery-grid">
-        <!-- Images will be injected here by JS -->
-    </div>
+<!-- ABOUT -->
+<section id="about" class="section">
+    <h2>ABOUT NOELLE</h2>
+
+    <p>
+        Hi! I'm Noelle ✦  
+        I'm 11 years old (12 this year) and I really love K-pop,
+        especially Stray Kids and NewJeans. I enjoy listening to music,
+        watching performances, drawing, and learning about my favorite idols.
+    </p>
 </section>
 
+<!-- GROUPS -->
+<section id="groups" class="section">
+    <h2>FEATURED GROUPS</h2>
+
+    <!-- STRAY KIDS -->
+    <div class="group-card">
+        <img
+            src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1600&auto=format&fit=crop"
+            alt="Stray Kids"
+        >
+
+        <div class="group-content">
+            <h3>Stray Kids</h3>
+
+            <p>
+                Stray Kids is an energetic K-pop boy group famous for their
+                powerful rap, intense performances, and self-produced music.
+                Their songs often feature strong beats and inspiring messages
+                about confidence and chasing dreams.
+            </p>
+        </div>
+    </div>
+
+    <!-- NEWJEANS -->
+    <div class="group-card">
+        <img
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1600&auto=format&fit=crop"
+            alt="NewJeans"
+        >
+
+        <div class="group-content">
+            <h3>NewJeans</h3>
+
+            <p>
+                NewJeans is a popular K-pop girl group known for their fresh,
+                trendy style and relaxing music. Their songs mix modern pop
+                with nostalgic vibes, making them loved by fans around the world.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 K-POP WORLD ✦ STRAY KIDS & NEWJEANS
+</footer>
+
 <script>
-    // --- EDIT YOUR CONTENT HERE ---
-    const config = {
-        title: "Hi, i'm Noelle ✦",
-        about: "I'm 11 years old (12 this year) and I love to draw",
-        images: [
-            "img/girl.jpg",
-            "img/rodrick.jpg",
-            "img/noeul.jpg",
-            "img/wolf.jpg",
-        ]
-    };
-
-    // --- INITIALIZE PAGE ---
-    function init() {
-        document.getElementById('hero-title').innerText = config.title;
-        document.getElementById('hero-desc').innerText = config.about;
-        document.getElementById('about-text').innerText = config.about;
-
-        const grid = document.getElementById('gallery-grid');
-        config.images.forEach(url => {
-            const img = document.createElement('img');
-            img.src = url;
-            img.className = 'gallery-item';
-            img.alt = "Portfolio Piece";
-            grid.appendChild(img);
-        });
-    }
-
-    // --- PARALLAX EFFECT ---
+    // PARALLAX EFFECT
     window.addEventListener("scroll", () => {
         document.documentElement.style.setProperty("--scroll", window.scrollY);
     });
-
-    init();
 </script>
 
 </body>
