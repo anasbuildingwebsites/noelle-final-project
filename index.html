@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=RocknRoll+One&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f0f14;
+            --accent: #ff8ad6;
+            --accent2: #8affc1;
+            --text: #f5f5f5;
+            --scroll: 0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15,15,20,0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .logo { font-family: 'RocknRoll One', sans-serif; color: var(--accent); }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--accent2); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            background: url('https://picsum.photos/1200/800?blur=5') center/cover no-repeat;
+            /* The parallax magic */
+            transform: translateY(calc(var(--scroll) * 0.3px));
+            z-index: -2;
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-family: 'RocknRoll One', sans-serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(255, 138, 214, 0.3);
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 12px 28px;
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        /* CONTENT SECTIONS */
+        .section {
+            padding: 100px 10% ;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            font-family: 'RocknRoll One', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent2);
+        }
+
+        /* DYNAMIC GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: 0.5s ease;
+            filter: grayscale(80%) brightness(0.8);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            filter: grayscale(0%) brightness(1);
+            box-shadow: 0 10px 30px rgba(138, 255, 193, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">★ MYSPACE</div>
+    <div class="nav-links">
+        <a href="#about">ABOUT</a>
+        <a href="#gallery">GALLERY</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1 id="hero-title"></h1>
+    <p id="hero-desc">
+    <a href="#gallery" class="btn">SEE MY WORK</a>
+</section>
+
+<section id="about" class="section">
+    <h2>ABOUT</h2>
+    <p id="about-text">
+        
+    </p>
+</section>
+
+<section id="gallery" class="section">
+    <h2>GALLERY</h2>
+    <div class="gallery" id="gallery-grid">
+        <!-- Images will be injected here by JS -->
+    </div>
+</section>
+
+<script>
+    // --- EDIT YOUR CONTENT HERE ---
+    const config = {
+        title: "Hi, i'm Noelle ✦",
+        about: "I'm 11 years old (12 this year) and I love to draw",
+        images: [
+            "img/girl.jpg",
+            "img/rodrick.jpg",
+            "img/noeul.jpg",
+            "img/wolf.jpg",
+        ]
+    };
+
+    // --- INITIALIZE PAGE ---
+    function init() {
+        document.getElementById('hero-title').innerText = config.title;
+        document.getElementById('hero-desc').innerText = config.about;
+        document.getElementById('about-text').innerText = config.about;
+
+        const grid = document.getElementById('gallery-grid');
+        config.images.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url;
+            img.className = 'gallery-item';
+            img.alt = "Portfolio Piece";
+            grid.appendChild(img);
+        });
+    }
+
+    // --- PARALLAX EFFECT ---
+    window.addEventListener("scroll", () => {
+        document.documentElement.style.setProperty("--scroll", window.scrollY);
+    });
+
+    init();
+</script>
+
+</body>
+</html>
